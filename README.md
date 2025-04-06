@@ -231,7 +231,7 @@ _Note: You may need to use `python3` instead of `python` depending on your envir
 - [SEGA Official Music Data](https://maimai.sega.jp/data/maimai_songs.json) : base JSON file
 - [maimai 攻略wiki](https://gamerch.com/maimai/) : BPM, Chart note details, Chart designer
 - [maimai DX PRiSM譜面定数表](https://docs.google.com/spreadsheets/d/1DKssDl2MM-jjK_GmHPEIVcOMcpVzaeiXA9P5hmhDqAo) : Chart constants (譜面定数)
-- [内部Lv.の表 PRiSM ver.(sgimera)](https://sgimera.github.io/mai_RatingAnalyzer/maidx_inner_level_23_prism.html) : Chart constants (譜面定数)
+- [内部Lv.の表 PRiSM PLUS ver.(sgimera)](https://sgimera.github.io/mai_RatingAnalyzer/maidx_inner_level_24_prismplus.html) : Chart constants (譜面定数)
 
 ## Feedback
 - Contact [@otoge_db](https://x.com/otoge_db) or [@zvuc_](https://x.com/zvuc_) for any suggestions or inquiries.
