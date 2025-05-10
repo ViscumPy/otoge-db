@@ -7,14 +7,14 @@
   </div>
 header
   nav.otogedb-nav
-    a.label(href='/')
+    a.label(href='./')
       span.text OTOGE DB
       +symbol('otogedb-logo')
-    a.nav-link(href=(flat_view ? '/ongeki/lv' : '/ongeki'))
+    a.nav-link(href=(flat_view ? './ongeki/lv' : './ongeki'))
       span ONGEKI
-    a.nav-link(href=(flat_view ? '/chunithm/lv' : '/chunithm'))
+    a.nav-link(href=(flat_view ? './chunithm/lv' : './chunithm'))
       span CHUNITHM
-    a.nav-link(href=(flat_view ? '/maimai/lv' : '/maimai'))
+    a.nav-link(href=(flat_view ? './maimai/lv' : './maimai'))
       span maimai
   .container
     h1
