@@ -53,7 +53,7 @@
         "col_designer": "譜面作者",
         "col_chart": "譜面",
         "col_intl": "Int'l",
-        "col_added_date": "更新日",
+        "col_added_date": "更新日 🇯🇵",
         "col_added_date_intl": "更新日🌏",
         "col_unlock": "解禁",
         "date_added_with_date": "__date__ 初追加",
@@ -101,8 +101,8 @@
             "paginate": {
                 "sFirst": "首页",
                 "sLast": "末页",
-                "sNext": "NEXT",
-                "sPrevious": "PREV"
+                "sNext": "下一页",
+                "sPrevious": "上一页"
             },
             "aria": {
                 "sSortAscending": ": 列升序排序",
@@ -138,7 +138,7 @@
         "col_designer": "谱面作者",
         "col_chart": "谱面",
         "col_intl": "Int'l",
-        "col_added_date": "更新日",
+        "col_added_date": "更新日 🇯🇵",
         "col_added_date_intl": "更新日🌏",
         "col_unlock": "解禁",
         "date_added_with_date": "__date__ 初追加",
