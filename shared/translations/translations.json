@@ -96,7 +96,7 @@
             "loadingRecords": "读取中...",
             "processing": "处理中...",
             "search": "搜索",
-            "searchPlaceholder": "曲名・艺术家搜索",
+            "searchPlaceholder": "曲名・曲师搜索",
             "zeroRecords": "没有匹配的记录",
             "paginate": {
                 "sFirst": "首页",
