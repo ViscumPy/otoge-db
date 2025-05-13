@@ -13363,6 +13363,7 @@
         "dx_lev_adv": "7+",
         "dx_lev_exp": "11",
         "dx_lev_mas": "13+",
+        "lev_bas_i": "5.0",
         "lev_bas_notes": "212",
         "lev_bas_notes_tap": "198",
         "lev_bas_notes_hold": "8",
