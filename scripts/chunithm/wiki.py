@@ -94,7 +94,8 @@ VERSION_DATES = {
     "SUN+": "20230511",
     "LUMINOUS": "20231214",
     "LUMINOUS+": "20240620",
-    "VERSE": "20241212"
+    "VERSE": "20241212",
+    "X-VERSE": "20250716"
 }
 
 CHART_COLORS = {
@@ -124,13 +125,7 @@ def update_songs_extra_data():
     for song in target_song_list:
         update_song_wiki_data(song, total_diffs)
 
-        # Sort the song dictionary before saving
-        sorted_song = sort_dict_keys(song)
-        song.clear()  # Clear the original song dictionary
-        song.update(sorted_song)
-
-    with open(LOCAL_MUSIC_EX_JSON_PATH, 'w', encoding='utf-8') as f:
-        json.dump(local_music_ex_data, f, ensure_ascii=False, indent=2)
+    sort_and_save_json(local_music_ex_data, LOCAL_MUSIC_EX_JSON_PATH)
 
     if total_diffs[0] == 0:
         print_message("(Nothing updated)", bcolors.ENDC, log=True)
@@ -341,9 +336,9 @@ def _parse_wikiwiki(song, wiki, url, total_diffs, header_printed):
                 # check if separated text includes 譜面定数 in second row
                 if '譜面定数' in chart_constant_designer[1]:
                     chart_designers_text = chart_constant_designer[0]
-                    chart_designers_dict = _construct_constant_designer_dict(song, chart_designers_text, 'designer')
+                    chart_designers_dict = _construct_constant_designer_dict(song, chart_designers_text, 'designer', header_printed)
                     chart_constants_text = chart_constant_designer[1]
-                    chart_constants_dict = _construct_constant_designer_dict(song, chart_constants_text, 'i')
+                    chart_constants_dict = _construct_constant_designer_dict(song, chart_constants_text, 'i', header_printed)
                     break
             else:
                 # Sometimes the brackets are missing the header text
@@ -358,13 +353,13 @@ def _parse_wikiwiki(song, wiki, url, total_diffs, header_printed):
 
                 if re.match(r'\d{2}\.\d', match.group(3)) is not None:
                     chart_constants_text = match.group()
-                    chart_constants_dict = _construct_constant_designer_dict(song, chart_constants_text, 'i')
+                    chart_constants_dict = _construct_constant_designer_dict(song, chart_constants_text, 'i', header_printed)
 
                     # try looking for designer bracket nearby
                     # even if it doesnt have a title
                     if re.match(r'\d{2}\.\d', match_other.group(3)) is None:
                         chart_designers_text = match_other.group()
-                        chart_designers_dict = _construct_constant_designer_dict(song, chart_designers_text, 'designer')
+                        chart_designers_dict = _construct_constant_designer_dict(song, chart_designers_text, 'designer', header_printed)
                         break
                     else:
                         break
@@ -383,7 +378,7 @@ def _parse_wikiwiki(song, wiki, url, total_diffs, header_printed):
 
                 if re.match(r'\d{2}\.\d', match.group(3)) is None:
                     chart_designers_text = chart_constant_designer_span_text
-                    chart_designers_dict = _construct_constant_designer_dict(song, chart_designers_text, 'designer')
+                    chart_designers_dict = _construct_constant_designer_dict(song, chart_designers_text, 'designer', header_printed)
                 elif match is None and song['we_kanji']:
                     # Song is WE only
                     chart_designers_text = chart_constant_designer_span_text
@@ -404,7 +399,7 @@ def _parse_wikiwiki(song, wiki, url, total_diffs, header_printed):
 
                 if re.match(r'\d{2}\.\d', match.group(3)) is not None:
                     chart_constants_text = chart_constant_designer_span_text
-                    chart_constants_dict = _construct_constant_designer_dict(song, chart_constants_text, 'i')
+                    chart_constants_dict = _construct_constant_designer_dict(song, chart_constants_text, 'i', header_printed)
                     break
         else:
             lazy_print_song_header(f"{song['id']} {song['title']}", header_printed, log=True, is_verbose=True)
@@ -562,7 +557,7 @@ def _update_song_chart_details(song, chart_dict, chart_constant_designer_dict, c
         print_message(f"Added chart designer for {chart.upper()}", bcolors.OKGREEN)
 
 
-def _construct_constant_designer_dict(song, text, key_name):
+def _construct_constant_designer_dict(song, text, key_name, header_printed):
     # Use regular expression to find content within brackets
     match = re.search(r'【(.*?)】', text)
 
@@ -585,6 +580,10 @@ def _construct_constant_designer_dict(song, text, key_name):
                 key, value = pair.split('…', 1)
             elif '...' in pair:
                 key, value = pair.split('...', 1)
+            else:
+                lazy_print_song_header(f"{song['id']} {song['title']}", header_printed, log=True, is_verbose=True)
+                print_message(f"Warning - Found designer but was discarded due to unparsable formatting ({pair})", bcolors.WARNING, log=True, is_verbose=True)
+                continue
             dictionary[key] = value
 
         # transform key names into lev_{chart} format
