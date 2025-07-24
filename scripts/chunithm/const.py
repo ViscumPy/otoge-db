@@ -9,7 +9,7 @@ from shared.common_func import *
 from chunithm.paths import *
 from datetime import datetime
 
-SHEETS_ID = '1NTGkrOoLdzOoaYyz7d4vDT3cW2Q6lZfoc1nvd7nlNLE'
+SHEETS_ID = '1wewufZZ9iOy-3To6ITc_vwbUpfMhEVlGUKAmse2JgSs'
 SHEETS_BASE_URL = f'https://docs.google.com/spreadsheets/d/{SHEETS_ID}/export?format=csv&id={SHEETS_ID}&gid='
 
 CHARTS = [
@@ -21,7 +21,8 @@ CHARTS = [
 ]
 CUR_VERSION_SHEET = '1971412612'
 SHEETS_MAP = {
-    '262760047': ['14+', '15', '15+'],
+    '672636621': ['15', '15+'],
+    '262760047': ['14+'],
     '2099154164': ['14'],
     '1700582700': ['13+'],
     '487918628': ['13+'],
@@ -64,13 +65,7 @@ def update_const_data():
     for song in target_song_list:
         _update_song_const_data(song, total_diffs)
 
-        # Sort the song dictionary before saving
-        sorted_song = sort_dict_keys(song)
-        song.clear()  # Clear the original song dictionary
-        song.update(sorted_song)
-
-    with open(LOCAL_MUSIC_EX_JSON_PATH, 'w', encoding='utf-8') as f:
-        json.dump(local_music_ex_data, f, ensure_ascii=False, indent=2)
+    sort_and_save_json(local_music_ex_data, LOCAL_MUSIC_EX_JSON_PATH)
 
     if total_diffs[0] == 0:
         print_message("(Nothing updated)", bcolors.ENDC, log=True)
