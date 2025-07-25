@@ -37,13 +37,7 @@ def update_const_data():
     for song in target_song_list:
         _update_song_with_sgimera_data(song, sgimera_data, total_diffs)
 
-        # Sort the song dictionary before saving
-        sorted_song = sort_dict_keys(song)
-        song.clear()  # Clear the original song dictionary
-        song.update(sorted_song)
-
-    with open(LOCAL_MUSIC_EX_JSON_PATH, 'w', encoding='utf-8') as f:
-        json.dump(local_music_ex_data, f, ensure_ascii=False, indent=2)
+    sort_and_save_json(local_music_ex_data, LOCAL_MUSIC_EX_JSON_PATH)
 
     if total_diffs[0] == 0:
         print_message("(Nothing updated)", bcolors.ENDC, log=True)
@@ -162,7 +156,17 @@ def _update_song_with_sgimera_data(song, sgimera_data, total_diffs):
         return False  # No match found
 
     if 'lev_bas' in song and 'dx_lev_bas' in song:
-        target_entry_lv = target_entry['lv_std'] + target_entry['lv_dx']
+        if 'lv_std' in target_entry and 'lv_dx' not in target_entry:
+            lazy_print_song_header(f"{song['sort']}, {song['title']}, {song['version']}", header_printed, log=True)
+            print_message("Warning: Target found but DX charts not in entry. Skipping", bcolors.WARNING, log=True)
+            return False  # No match found
+        elif 'lv_std' not in target_entry and 'lv_dx' in target_entry:
+            lazy_print_song_header(f"{song['sort']}, {song['title']}, {song['version']}", header_printed, log=True)
+            print_message("Warning: Target found but Std charts not in entry. Skipping", bcolors.WARNING, log=True)
+            return False  # No match found
+        elif 'lv_std' in target_entry and 'lv_dx' in target_entry:
+            target_entry_lv = target_entry['lv_std'] + target_entry['lv_dx']
+
     elif 'dx_lev_bas' in song:
         target_entry_lv = target_entry['lv_dx']
     elif 'lev_bas' in song:
@@ -231,4 +235,3 @@ def _update_song_with_sgimera_data(song, sgimera_data, total_diffs):
                 print_message(f"No change ({chart_key}: {chart_const})", bcolors.ENDC, log=True, is_verbose=True)
 
     return True
-
