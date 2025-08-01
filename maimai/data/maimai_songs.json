@@ -1371,8 +1371,13 @@
   {
     "artist": "wowaka",
     "catcode": "niconico＆ボーカロイド",
+    "date": "NEW",
+    "dx_lev_bas": "4",
+    "dx_lev_adv": "7+",
+    "dx_lev_exp": "10+",
+    "dx_lev_mas": "13",
     "image_url": "35c7bf45db2cc050.png",
-    "release": "000000",
+    "release": "250801",
     "lev_bas": "4",
     "lev_adv": "7",
     "lev_exp": "9+",
@@ -18590,7 +18595,6 @@
   {
     "artist": "kamome sano",
     "catcode": "オンゲキ＆CHUNITHM",
-    "date": "NEW",
     "dx_lev_bas": "3",
     "dx_lev_adv": "7",
     "dx_lev_exp": "10+",
@@ -18605,7 +18609,6 @@
   {
     "artist": "Taishi",
     "catcode": "オンゲキ＆CHUNITHM",
-    "date": "NEW",
     "dx_lev_bas": "4",
     "dx_lev_adv": "7+",
     "dx_lev_exp": "12",
@@ -18621,7 +18624,6 @@
   {
     "artist": "D-Cee",
     "catcode": "オンゲキ＆CHUNITHM",
-    "date": "NEW",
     "dx_lev_bas": "4",
     "dx_lev_adv": "7+",
     "dx_lev_exp": "12",
@@ -19002,6 +19004,21 @@
     "version": "25507"
   },
   {
+    "artist": "ああああ",
+    "catcode": "ゲーム＆バラエティ",
+    "date": "NEW",
+    "dx_lev_bas": "6",
+    "dx_lev_adv": "8",
+    "dx_lev_exp": "11+",
+    "dx_lev_mas": "14",
+    "image_url": "e01e7560acc1348d.png",
+    "release": "250801",
+    "sort": "628",
+    "title": "∀",
+    "title_kana": "9999991",
+    "version": "25515"
+  },
+  {
     "artist": "マサラダ",
     "catcode": "niconico＆ボーカロイド",
     "dx_lev_bas": "3",
@@ -19127,6 +19144,21 @@
     "title": "抜錨",
     "title_kana": "ハツヒヨウ",
     "version": "25509"
+  },
+  {
+    "artist": "Snail's House",
+    "catcode": "ゲーム＆バラエティ",
+    "date": "NEW",
+    "dx_lev_bas": "3",
+    "dx_lev_adv": "7",
+    "dx_lev_exp": "9+",
+    "dx_lev_mas": "13",
+    "image_url": "efa1f420c755d481.png",
+    "release": "250801",
+    "sort": "627",
+    "title": "Pixel Galaxy",
+    "title_kana": "PIXELGALAXY",
+    "version": "25516"
   },
   {
     "artist": "Q;indivi [cover]",
